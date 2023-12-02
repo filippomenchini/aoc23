@@ -65,6 +65,20 @@ class Game {
     return true;
   }
 
+  int getPowerOfSetsOfCubes() {
+    int reds = 0;
+    int greens = 0;
+    int blues = 0;
+
+    for (var set in sets) {
+      reds = set.redCubes > reds ? set.redCubes : reds;
+      greens = set.greenCubes > greens ? set.greenCubes : greens;
+      blues = set.blueCubes > blues ? set.blueCubes : blues;
+    }
+
+    return reds * greens * blues;
+  }
+
   @override
   String toString() {
     String string = "Game $id: ";
@@ -87,7 +101,7 @@ class Game {
   }
 }
 
-Future<int> day2(String inputFilePath) async {
+Future<int> day2Part1(String inputFilePath) async {
   final input = File(inputFilePath);
   final lines = await input
       .openRead()
@@ -95,11 +109,29 @@ Future<int> day2(String inputFilePath) async {
       .transform(LineSplitter())
       .toList();
 
-  final games = lines.map((game) => Game.fromString(game));
+  final games = lines.map(Game.fromString);
 
   int result = 0;
   for (var game in games) {
     if (game.isValid()) result += game.id;
+  }
+
+  return result;
+}
+
+Future<int> day2Part2(String inputFilePath) async {
+  final input = File(inputFilePath);
+  final lines = await input
+      .openRead()
+      .transform(utf8.decoder)
+      .transform(LineSplitter())
+      .toList();
+
+  final games = lines.map(Game.fromString);
+
+  int result = 0;
+  for (var game in games) {
+    result += game.getPowerOfSetsOfCubes();
   }
 
   return result;
