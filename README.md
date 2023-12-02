@@ -4,5 +4,9 @@ This repo stores my exercises for [Advent of Code 2023](https://adventofcode.com
 
 ## Resolved puzzles
 
-- [x] Day 1
-- [x] Day 2
+- Day 1
+    - Part 1
+    - Part 2
+- Day 2
+    - Part 1
+    - Part 2
