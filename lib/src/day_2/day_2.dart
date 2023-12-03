@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
-import 'dart:convert';
-import 'dart:io';
+
+import 'package:aoc23/src/commons/get_file_lines.dart';
 
 const MAX_RED_CUBES = 12;
 const MAX_GREEN_CUBES = 13;
@@ -102,13 +102,7 @@ class Game {
 }
 
 Future<int> day2Part1(String inputFilePath) async {
-  final input = File(inputFilePath);
-  final lines = await input
-      .openRead()
-      .transform(utf8.decoder)
-      .transform(LineSplitter())
-      .toList();
-
+  final lines = await getFileLines(inputFilePath);
   final games = lines.map(Game.fromString);
 
   int result = 0;
@@ -120,12 +114,7 @@ Future<int> day2Part1(String inputFilePath) async {
 }
 
 Future<int> day2Part2(String inputFilePath) async {
-  final input = File(inputFilePath);
-  final lines = await input
-      .openRead()
-      .transform(utf8.decoder)
-      .transform(LineSplitter())
-      .toList();
+  final lines = await getFileLines(inputFilePath);
 
   final games = lines.map(Game.fromString);
 

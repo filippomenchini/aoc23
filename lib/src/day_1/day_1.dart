@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
+import 'package:aoc23/src/commons/get_file_lines.dart';
 
 const numbersInStrings = {
   'one': '1',
@@ -14,12 +13,7 @@ const numbersInStrings = {
 };
 
 Future<int> day1Part1(String inputFilePath) async {
-  final input = File(inputFilePath);
-  final lines = await input
-      .openRead()
-      .transform(utf8.decoder)
-      .transform(LineSplitter())
-      .toList();
+  final lines = await getFileLines(inputFilePath);
 
   final result = lines
       .map((line) => line.replaceAll(RegExp(r'[^0-9]'), ""))
@@ -31,12 +25,7 @@ Future<int> day1Part1(String inputFilePath) async {
 }
 
 Future<int> day1Part2(String inputFilePath) async {
-  final input = File(inputFilePath);
-  final lines = await input
-      .openRead()
-      .transform(utf8.decoder)
-      .transform(LineSplitter())
-      .toList();
+  final lines = await getFileLines(inputFilePath);
 
   final result = lines
       .map(stringToNumber)
